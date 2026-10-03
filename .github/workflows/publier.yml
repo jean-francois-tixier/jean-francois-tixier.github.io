@@ -1,0 +1,50 @@
+# Publie le CV sur GitHub Pages à chaque modification du dépôt (mode édition en ligne ou mise à jour locale) :
+# le PDF téléchargeable est d'abord régénéré à partir de la page, pour qu'il soit toujours à jour.
+name: Publier le CV
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Préparer le site
+        run: |
+          mkdir _site
+          cp -r index.html admin.js admin.css assets _site/
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Régénérer le PDF du CV à partir de la page
+        run: |
+          npm install --no-save --no-audit --no-fund puppeteer@23
+          node .github/scripts/pdf.js _site
+
+      - name: Lien de téléchargement propre à cette version (aucun ancien PDF servi depuis un cache)
+        run: sed -i "s|href=\"CV_Jean-Francois_TIXIER.pdf\"|href=\"CV_Jean-Francois_TIXIER.pdf?v=${GITHUB_SHA::8}\"|" _site/index.html
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploiement
+        uses: actions/deploy-pages@v4

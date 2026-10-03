@@ -7,8 +7,9 @@
  *   élément de frise, puce, ligne de contact) peut être dupliqué, déplacé ou supprimé ; on peut ajouter une
  *   rubrique dans la colonne et dans le contenu principal. Les nouveaux blocs reprennent la charte existante.
  * - Enregistrer : le contenu de la page est écrit dans index.html du dépôt via l'API GitHub, avec un jeton
- *   d'accès créé par le titulaire du compte et conservé dans ce navigateur uniquement. GitHub Pages republie le
- *   site en une minute environ ; en attendant, ce navigateur affiche déjà la version enregistrée.
+ *   d'accès créé par le titulaire du compte et conservé dans ce navigateur uniquement. La tâche GitHub Actions
+ *   « Publier le CV » régénère alors le PDF téléchargeable et republie le site (deux minutes environ) ; en attendant,
+ *   ce navigateur affiche déjà la version enregistrée.
  * - Annuler : abandonne les modifications et recharge la dernière version enregistrée.
  *
  * Ce script est chargé juste après <div class="page"> et avant le script principal du CV.
@@ -462,7 +463,7 @@
       ecrire(localStorage, CLE_RECENTE, JSON.stringify({ html: html, t: Date.now() }));
       instantane = html;
       sortirEdition();
-      message('Enregistré. Le site public sera à jour dans une minute environ. Le PDF téléchargeable, lui, n’est pas régénéré.', false, 8000);
+      message('Enregistré. Le site public et le PDF téléchargeable seront à jour d’ici deux minutes environ.', false, 8000);
     } catch (e) {
       etat.textContent = 'Non enregistré';
       message(e.message, true, 8000);
