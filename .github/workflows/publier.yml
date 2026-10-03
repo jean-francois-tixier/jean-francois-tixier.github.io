@@ -28,7 +28,7 @@ jobs:
       - name: Préparer le site
         run: |
           mkdir _site
-          cp -r index.html admin.js admin.css assets _site/
+          cp -r index.html *.js *.css assets _site/
 
       - uses: actions/setup-node@v4
         with:

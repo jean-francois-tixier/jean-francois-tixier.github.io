@@ -325,19 +325,43 @@
     if (!outils) creerOutils();
     barre = el('div', { 'class': 'adm-barre', role: 'toolbar', 'aria-label': 'Mode édition' },
       '<span class="adm-titre">Mode édition</span><span class="adm-etat">Cliquez sur un texte pour le modifier</span>' +
+      '<button type="button" class="adm-btn secondaire adm-son" data-a="son" title="Réglage du son appliqué aux visiteurs qui n’ont pas fait leur propre choix"></button>' +
       '<button type="button" class="adm-btn secondaire" data-a="annuler">Annuler</button>' +
       '<button type="button" class="adm-btn principal" data-a="enregistrer">Enregistrer</button>' +
       '<button type="button" class="adm-btn secondaire" data-a="deconnexion" title="Quitter le mode administration">Déconnexion</button>');
     document.body.appendChild(barre);
+    majSonDefaut();
     barre.addEventListener('click', function (ev) {
       var b = ev.target.closest('button');
       if (!b) return;
       var a = b.getAttribute('data-a');
-      if (a === 'annuler') annuler();
+      if (a === 'son') basculerSonDefaut();
+      else if (a === 'annuler') annuler();
       else if (a === 'enregistrer') enregistrer(b);
       else if (a === 'deconnexion') deconnexion();
     });
     message('Mode édition : modifiez les textes, survolez un bloc pour le dupliquer, le déplacer ou le supprimer.');
+  }
+
+  // Son par défaut des visiteurs : marqueur caché dans le contenu du CV, donc enregistré avec lui
+  function marqueurSon() {
+    var r = document.getElementById('reglage-son-defaut');
+    if (!r) {
+      r = el('span', { id: 'reglage-son-defaut', 'data-son': 'actif', hidden: '' });
+      page.insertBefore(r, page.firstChild);
+    }
+    return r;
+  }
+  function majSonDefaut() {
+    var b = barre && barre.querySelector('.adm-son');
+    if (!b) return;
+    b.textContent = 'Son par défaut : ' + (marqueurSon().getAttribute('data-son') === 'coupe' ? 'coupé' : 'activé');
+  }
+  function basculerSonDefaut() {
+    var r = marqueurSon();
+    r.setAttribute('data-son', r.getAttribute('data-son') === 'coupe' ? 'actif' : 'coupe');
+    majSonDefaut();
+    message('Réglage par défaut du son modifié : il s’appliquera aux visiteurs après « Enregistrer ».');
   }
 
   function sortirEdition() {

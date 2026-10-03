@@ -1,0 +1,15 @@
+/* Réglage du son dans le panneau Réglages : haut-parleur barré et grisé (son coupé), doré (son actif) */
+.son-ligne { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 10px; margin-top: 4px;
+             border-top: 1px solid #eceef2; }
+.son-ligne b { display: block; font-weight: 600; }
+.son-ligne small { color: var(--gris); font-size: 12.5px; }
+.son-bouton { flex: none; width: 42px; height: 42px; border-radius: 50%; border: 1px solid #cfd4dc; background: #f3f4f6; cursor: pointer;
+              display: inline-flex; align-items: center; justify-content: center; color: #9aa1ab; transition: background .25s, color .25s, border-color .25s, box-shadow .25s; }
+.son-bouton svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.son-bouton .hp { fill: currentColor; fill-opacity: .18; }
+.son-bouton .ondes { display: none; }
+.son-bouton:hover { border-color: var(--nuit); color: var(--nuit); }
+.son-bouton.actif { background: var(--nuit); border-color: var(--or); color: var(--or-clair); box-shadow: 0 0 0 3px rgba(209,176,107,.25); }
+.son-bouton.actif .barre { display: none; }
+.son-bouton.actif .ondes { display: inline; }
+.son-bouton:focus-visible { outline: 3px solid var(--or-clair); outline-offset: 2px; }
