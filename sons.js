@@ -4,8 +4,9 @@
  *   Le choix du visiteur est mémorisé dans son navigateur ; sans choix, le réglage par défaut du site s'applique
  *   (<span id="reglage-son-defaut" data-son="actif|coupe">, modifiable dans le mode édition, actif à l'origine).
  *   Les navigateurs n'autorisent le son qu'après une première interaction (clic, toucher, touche) avec la page.
- * - Sons synthétisés en direct (Web Audio) : aucun fichier audio, aucun droit d'auteur.
- *     Percussions -> motif de batterie ; Mécanique automobile -> démarrage d'un moteur ; Sports -> plongeon.
+ * - Percussions -> motif de batterie synthétisé (Web Audio) ;
+ *   Mécanique automobile -> enregistrement assets/sons/voiture.wav ; Sports -> enregistrement assets/sons/plongeon.wav
+ *   (fichiers fournis par l'utilisateur, convertis en mono). Si un fichier ne se charge pas, un son synthétisé le remplace.
  *   Les zones sont reconnues d'après le titre de l'intérêt : elles restent actives même si le texte est modifié
  *   en mode édition, tant que le titre contient le mot-clé.
  * - Aucun son en mode édition.
@@ -39,6 +40,7 @@
       maitre.gain.value = 0.32;
       var comp = ctx.createDynamicsCompressor();
       maitre.connect(comp); comp.connect(ctx.destination);
+      Object.keys(FICHIERS).forEach(charger);   // préchargement des enregistrements
     }
     if (ctx.state === 'suspended') ctx.resume();
     return ctx;
@@ -142,11 +144,36 @@
     }
   }
 
+  // ---------- Enregistrements fournis (moteur, plongeon), avec le son synthétique en secours ----------
+  var FICHIERS = { voiture: 'assets/sons/voiture.wav', plongeon: 'assets/sons/plongeon.wav' };
+  var tampons = {}, chargements = {};
+  function charger(nom) {
+    if (!chargements[nom]) {
+      chargements[nom] = fetch(FICHIERS[nom])
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+        .then(function (b) { return new Promise(function (ok, ko) { ctx.decodeAudioData(b, ok, ko); }); })
+        .then(function (t) { tampons[nom] = t; return t; })
+        .catch(function () { tampons[nom] = null; return null; });
+    }
+    return chargements[nom];
+  }
+  function jouer(nom, secours) {
+    if (tampons[nom]) {
+      var s = ctx.createBufferSource(), g = ctx.createGain();
+      s.buffer = tampons[nom]; g.gain.value = 1.8;
+      s.connect(g); g.connect(maitre); s.start();
+    } else if (tampons[nom] === null) {
+      secours();
+    } else {
+      charger(nom).then(function (t) { if (t) jouer(nom, secours); else secours(); });
+    }
+  }
+
   // ---------- Zones sonores : titres des centres d'intérêt ----------
   var ZONES = [
     { motif: /percussion|batterie/i, son: batterie, duree: 1200 },
-    { motif: /m[ée]canique|automobile|voiture/i, son: voiture, duree: 3400 },
-    { motif: /sport/i, son: plongeon, duree: 1300 }
+    { motif: /m[ée]canique|automobile|voiture/i, son: function () { jouer('voiture', voiture); }, duree: 1900 },
+    { motif: /sport/i, son: function () { jouer('plongeon', plongeon); }, duree: 2000 }
   ];
   function zoneDe(cible) {
     var bloc = cible.closest && cible.closest('aside .bloc-texte > div');
