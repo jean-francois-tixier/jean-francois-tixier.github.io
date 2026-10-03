@@ -4,9 +4,9 @@
  *   Le choix du visiteur est mémorisé dans son navigateur ; sans choix, le réglage par défaut du site s'applique
  *   (<span id="reglage-son-defaut" data-son="actif|coupe">, modifiable dans le mode édition, actif à l'origine).
  *   Les navigateurs n'autorisent le son qu'après une première interaction (clic, toucher, touche) avec la page.
- * - Percussions -> motif de batterie synthétisé (Web Audio) ;
- *   Mécanique automobile -> enregistrement assets/sons/voiture.wav ; Sports -> enregistrement assets/sons/plongeon.wav
- *   (fichiers fournis par l'utilisateur, convertis en mono). Si un fichier ne se charge pas, un son synthétisé le remplace.
+ * - Percussions -> assets/sons/batterie.wav ; Mécanique automobile -> assets/sons/voiture.wav ;
+ *   Sports -> assets/sons/plongeon.wav (enregistrements fournis par l'utilisateur, convertis en mono).
+ *   Si un fichier ne se charge pas, un son synthétisé (Web Audio) le remplace.
  *   Les zones sont reconnues d'après le titre de l'intérêt : elles restent actives même si le texte est modifié
  *   en mode édition, tant que le titre contient le mot-clé.
  * - Aucun son en mode édition.
@@ -145,7 +145,9 @@
   }
 
   // ---------- Enregistrements fournis (moteur, plongeon), avec le son synthétique en secours ----------
-  var FICHIERS = { voiture: 'assets/sons/voiture.wav', plongeon: 'assets/sons/plongeon.wav' };
+  var FICHIERS = { batterie: 'assets/sons/batterie.wav', voiture: 'assets/sons/voiture.wav', plongeon: 'assets/sons/plongeon.wav' };
+  // gains égalisant le niveau perçu des trois enregistrements (RMS mesurés : 7175, 5622, 3456)
+  var GAINS = { batterie: 1.4, voiture: 1.8, plongeon: 2.6 };
   var tampons = {}, chargements = {};
   function charger(nom) {
     if (!chargements[nom]) {
@@ -160,7 +162,7 @@
   function jouer(nom, secours) {
     if (tampons[nom]) {
       var s = ctx.createBufferSource(), g = ctx.createGain();
-      s.buffer = tampons[nom]; g.gain.value = 1.8;
+      s.buffer = tampons[nom]; g.gain.value = GAINS[nom] || 1.8;
       s.connect(g); g.connect(maitre); s.start();
     } else if (tampons[nom] === null) {
       secours();
@@ -171,7 +173,7 @@
 
   // ---------- Zones sonores : titres des centres d'intérêt ----------
   var ZONES = [
-    { motif: /percussion|batterie/i, son: batterie, duree: 1200 },
+    { motif: /percussion|batterie/i, son: function () { jouer('batterie', batterie); }, duree: 2000 },
     { motif: /m[ée]canique|automobile|voiture/i, son: function () { jouer('voiture', voiture); }, duree: 1900 },
     { motif: /sport/i, son: function () { jouer('plongeon', plongeon); }, duree: 2000 }
   ];
