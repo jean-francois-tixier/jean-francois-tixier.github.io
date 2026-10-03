@@ -4,8 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jean-François Tixier – CV</title>
-<meta name="description" content="CV de Jean-François Tixier, élève ingénieur ECAM Arts &amp; Métiers, en recherche de stage d’application Bac+3.">
+<meta name="description" content="CV de Jean-François Tixier, élève ingénieur ECAM Arts &amp; Métiers, en recherche d’un stage d’application Bac+3 du 31 mai au 27 août 2027.">
+<meta property="og:title" content="Jean-François Tixier – Élève ingénieur ECAM Arts &amp; Métiers">
+<meta property="og:description" content="Concevoir, fabriquer, programmer, tester. Stage d’application Bac+3, du 31 mai au 27 août 2027.">
+<meta property="og:image" content="https://jean-francois-tixier.github.io/assets/photo_JF_ronde.png">
+<meta property="og:url" content="https://jean-francois-tixier.github.io/">
+<meta name="theme-color" content="#1d2a40">
 <link rel="icon" href="assets/favicon.png">
+<script>
+  // Affichage mémorisé (dynamique par défaut), posé avant le rendu pour éviter un clignotement
+  (function () {
+    var m = 'dyn';
+    try { m = localStorage.getItem('cv-affichage') === 'pdf' ? 'pdf' : 'dyn'; } catch (e) {}
+    document.documentElement.className = 'js ' + m;
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -32,7 +45,7 @@
   html, body { background: #e6e8ec; }
   body { font-family: "Source Sans 3", "Segoe UI", Arial, sans-serif; color: var(--encre); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   sup { font-size: .62em; line-height: 0; vertical-align: .55em; text-transform: none; }
-  .page { width: 210mm; height: 297mm; margin: 0 auto; background: #fff; display: grid; grid-template-columns: 52mm 1fr; overflow: hidden; }
+  .page { position: relative; width: 210mm; height: 297mm; margin: 0 auto; background: #fff; display: grid; grid-template-columns: 52mm 1fr; overflow: hidden; }
   @media screen { .page { margin: 10mm auto; box-shadow: 0 4px 24px rgba(0,0,0,.15); } }
   @media print { html, body { background: #fff; } .page { margin: 0; box-shadow: none; } }
 
@@ -41,23 +54,30 @@
     background: linear-gradient(180deg, var(--nuit-2) 0%, var(--nuit) 55%);
     color: var(--side-texte); padding: 8.5mm 5.5mm 6mm 6mm;
   }
-  .photo { display: block; width: 31mm; height: 31mm; margin: 0 auto 5mm; border-radius: 50%; box-shadow: 0 0 0 1mm rgba(209,176,107,.22); }
+  .photo { display: block; width: 26mm; height: 26mm; margin: 0 auto 3.5mm; border-radius: 50%; box-shadow: 0 0 0 1mm rgba(209,176,107,.22); }
   aside h2 {
     font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 12.5pt; letter-spacing: 1.1px;
     text-transform: uppercase; color: var(--or-clair); display: flex; align-items: center; gap: 2.5mm; margin-bottom: 2.3mm;
   }
   aside h2::after { content: ""; flex: 1; height: 0.6pt; background: rgba(209,176,107,.55); }
-  aside section + section { margin-top: 3.8mm; }
+  aside section + section { margin-top: 3mm; }
   .accroche { font-size: 8.2pt; line-height: 1.42; color: var(--side-texte); font-weight: 300; }
   .accroche b { font-weight: 600; color: #fff; }
-  .carte { background: var(--carte); border: 0.5pt solid rgba(255,255,255,.08); border-radius: 1.5mm; padding: 1.3mm 2.2mm 1.5mm; margin-bottom: 1.3mm; }
+  .carte { background: var(--carte); border: 0.5pt solid rgba(255,255,255,.08); border-radius: 1.5mm; padding: 1.1mm 2.2mm 1.3mm; margin-bottom: .9mm; }
   .carte:last-child { margin-bottom: 0; }
+  /* Carte mise en avant (IA) : liseré et fond dorés */
+  .carte.vedette { background: rgba(209,176,107,.14); border: 0.6pt solid rgba(209,176,107,.65); border-left: 0.9mm solid var(--or-clair); }
+  .carte.vedette h3 { color: var(--or-clair); }
+  .carte.vedette p b { color: #fff; font-weight: 600; }
   .carte h3 { font-size: 8.2pt; font-weight: 600; color: #fff; line-height: 1.2; }
   .carte p { font-size: 7.2pt; color: var(--side-doux); line-height: 1.3; margin-top: .2mm; }
   .bloc-texte div { margin-bottom: 1.8mm; line-height: 1.25; }
   .bloc-texte div:last-child { margin-bottom: 0; }
   .bloc-texte h3 { font-size: 8.2pt; font-weight: 600; color: #fff; }
   .bloc-texte p { font-size: 7.3pt; color: var(--side-doux); margin-top: .2mm; }
+  /* Langues : nom et niveau sur la même ligne */
+  .langues div { display: flex; justify-content: space-between; align-items: baseline; gap: 2mm; margin-bottom: 1mm; }
+  .langues div p { margin-top: 0; text-align: right; }
 
   /* ---------- Contenu ---------- */
   main { padding: 8.5mm 10mm 6mm 9mm; }
@@ -79,11 +99,11 @@
 
   main h2 {
     font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 15pt; letter-spacing: .6px; text-transform: uppercase;
-    color: var(--encre); display: flex; align-items: center; gap: 4mm; margin: 4mm 0 2.2mm;
+    color: var(--encre); display: flex; align-items: center; gap: 4mm; margin: 3.5mm 0 2mm;
   }
   main h2::after { content: ""; flex: 1; height: 0.7pt; background: var(--filet); }
 
-  .item { display: grid; grid-template-columns: 24mm 1fr; position: relative; padding-bottom: 2.3mm; }
+  .item { display: grid; grid-template-columns: 24mm 1fr; position: relative; padding-bottom: 2mm; }
   .item:last-child { padding-bottom: 0; }
   .item { --axe: 4px; }
   .item::before { content: ""; position: absolute; left: var(--axe); top: 2mm; bottom: -2mm; width: 1px; background: var(--or); opacity: .75; }
@@ -98,18 +118,174 @@
   .item p.texte { font-size: 8.4pt; line-height: 1.34; color: var(--gris); margin-top: .6mm; }
   .item b { color: var(--encre); font-weight: 600; }
 
+  /* QR code discret vers le CV en ligne */
+  .qr { position: absolute; right: 5.5mm; bottom: 4.5mm; width: 16mm; text-align: center; }
+  .qr { text-decoration: none; }
+  .qr svg { display: block; width: 16mm; height: 16mm; }
+  /* La dernière expérience laisse la place du QR code */
+  main section:last-of-type .item:last-child > div { padding-right: 16mm; }
+  .qr span { display: block; margin-top: 0; font-size: 5.6pt; letter-spacing: .3px; color: var(--gris-2); }
   /* Informations manquantes, à remplacer avant envoi */
   .todo { color: #946a10; background: #fbf1d6; border: 0.6pt dashed #c9a24a; border-radius: 1mm; padding: 0 .9mm; font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; font-family: "Source Sans 3", sans-serif; }
   h3 .todo { font-size: 8.4pt; }
   aside .todo { color: #f0d48f; background: rgba(209,176,107,.12); border-color: rgba(209,176,107,.7); }
-  .barre-web { max-width: 210mm; margin: 6mm auto 0; display: flex; justify-content: flex-end; }
-  .barre-web a { font-family: "Source Sans 3", sans-serif; font-size: 10pt; font-weight: 600; color: #fff; background: var(--nuit); padding: 2.2mm 4.5mm; border-radius: 1.5mm; text-decoration: none; }
-  .barre-web a:hover { background: var(--or); }
-  @media print { .barre-web { display: none; } .page { zoom: 1 !important; } }
+
+  /* ================= Couche web (écran uniquement) : l'impression garde toujours la mise en page A4 ================= */
+  @media screen {
+    html { scroll-behavior: smooth; }
+    body { min-height: 100vh; }
+
+    /* ---------- Commandes communes : télécharger, réglages ---------- */
+    .commandes { position: fixed; top: 18px; right: 20px; z-index: 20; display: flex; gap: 10px; align-items: center; }
+    .telecharger, .reglages-bouton {
+      display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer;
+      font: 600 15px/1 "Source Sans 3", sans-serif; color: #fff; text-decoration: none; white-space: nowrap;
+      background: var(--nuit); padding: 12px 18px; border-radius: 999px;
+      box-shadow: 0 10px 30px -10px rgba(29,42,64,.6); position: relative; overflow: hidden; isolation: isolate;
+      transition: transform .25s, box-shadow .25s, background .25s;
+    }
+    .reglages-bouton { padding: 12px; }
+    .telecharger svg, .reglages-bouton svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .telecharger::after { content: ""; position: absolute; inset: 0; z-index: -1;
+                          background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%);
+                          transform: translateX(-120%); transition: transform .7s; }
+    .telecharger:hover, .reglages-bouton:hover { transform: translateY(-2px); background: #26375a; box-shadow: 0 16px 34px -12px rgba(29,42,64,.7); }
+    .telecharger:hover::after { transform: translateX(120%); }
+    .reglages-bouton svg { transition: transform .4s; }
+    .reglages-bouton[aria-expanded="true"] svg { transform: rotate(60deg); }
+    .telecharger:focus-visible, .reglages-bouton:focus-visible { outline: 3px solid var(--or-clair); outline-offset: 3px; }
+    .masque { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+    .reglages {
+      position: fixed; top: 70px; right: 20px; z-index: 21; width: 290px;
+      background: #fff; color: var(--encre); border-radius: 14px; padding: 16px 18px 14px;
+      box-shadow: 0 24px 60px -20px rgba(29,42,64,.55), 0 0 0 1px rgba(29,42,64,.06);
+      font: 14px/1.4 "Source Sans 3", sans-serif;
+    }
+    .reglages[hidden] { display: none; }
+    .reglages h2 { font: 600 13px/1 "Barlow Condensed", sans-serif; letter-spacing: 1.4px; text-transform: uppercase; color: var(--or); margin: 0 0 10px; }
+    .reglages label { display: flex; gap: 10px; align-items: flex-start; padding: 9px 10px; border-radius: 10px; cursor: pointer; }
+    .reglages label:hover { background: #f5f3ee; }
+    .reglages input { margin-top: 3px; accent-color: var(--or); }
+    .reglages b { display: block; font-weight: 600; }
+    .reglages small { color: var(--gris); font-size: 12.5px; }
+
+    /* ---------- Affichage « Identique au PDF » ---------- */
+    html.pdf body { background: #e6e8ec; }
+    html.pdf .page { margin: 76px auto 40px; }
+    html.pdf .revele, html.pdf .item::before { transition: none !important; }  /* page figée, comme le PDF */
+
+    /* ---------- Affichage « Dynamique » (par défaut) ---------- */
+    html.dyn body {
+      background:
+        radial-gradient(900px 520px at 85% -8%, rgba(209,176,107,.22), transparent 62%),
+        radial-gradient(700px 500px at -10% 110%, rgba(36,51,80,.16), transparent 60%),
+        #eceef2;
+    }
+    html.dyn .page {
+      position: relative; z-index: 1;
+      width: min(1000px, calc(100% - 40px)); height: auto; margin: 76px auto 56px;
+      grid-template-columns: minmax(240px, 27%) 1fr;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 40px 90px -40px rgba(29,42,64,.55), 0 2px 6px rgba(29,42,64,.08);
+      zoom: 1.12;
+    }
+    html.dyn .qr { display: none; }
+    html.dyn main section:last-of-type .item:last-child > div { padding-right: 0; }
+    html.dyn aside { padding: 34px 24px 30px; }
+    html.dyn .photo { width: 140px; height: 140px; margin-bottom: 26px; transition: transform .25s ease-out, box-shadow .3s; will-change: transform; }
+    html.dyn main { padding: 38px 40px 40px; }
+    html.dyn .contacts a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(176,141,67,.4); }
+    html.dyn .contacts a:hover { color: var(--or); }
+    html.dyn h1 span { will-change: transform; transition: transform .35s cubic-bezier(.2,.7,.3,1); }
+
+    /* Fil conducteur : l'étape active s'illumine à tour de rôle */
+    html.dyn .fil .etapes .etape { transition: color .45s, text-shadow .45s; }
+    html.dyn .fil .etapes .etape.active { color: var(--or); text-shadow: 0 0 18px rgba(176,141,67,.35); }
+
+    /* Reflet qui suit la souris sur les cartes et les éléments de la frise */
+    html.dyn .carte, html.dyn .item { --mx: -999px; --my: -999px; }
+    html.dyn .carte {
+      background-image: radial-gradient(160px circle at var(--mx) var(--my), rgba(255,255,255,.16), transparent 70%);
+      transition: border-color .3s, transform .3s;
+    }
+    html.dyn .carte:hover { border-color: rgba(209,176,107,.55); transform: translateX(3px); }
+    html.dyn .item { border-radius: 10px; background-image: radial-gradient(280px circle at var(--mx) var(--my), rgba(176,141,67,.10), transparent 70%); }
+    html.dyn .puce { transition: transform .3s cubic-bezier(.3,1.6,.5,1), filter .3s; transform-origin: 50% 50%; }
+    html.dyn .item:hover .puce { transform: scale(1.45); filter: drop-shadow(0 0 5px rgba(176,141,67,.7)); }
+    html.dyn .item h3 { transition: color .3s; }
+    html.dyn .item:hover h3 { color: var(--or); }
+
+    /* Halo doré qui suit le pointeur, derrière la page, et barre de progression de lecture */
+    .halo, .progression, .pied { display: none; }
+    html.dyn .halo { display: block; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+                     background: radial-gradient(520px circle at var(--hx, 50%) var(--hy, 30%), rgba(209,176,107,.28), transparent 65%); }
+    html.dyn .progression { display: block; position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 19;
+                            background: linear-gradient(90deg, var(--or-clair), var(--or)); transform-origin: 0 50%; transform: scaleX(0); }
+    html.dyn .pied { display: block; position: relative; z-index: 1; text-align: center; font: 13px "Source Sans 3", sans-serif; color: #7b8494; margin: -30px 0 40px; }
+
+    /* Apparition au défilement */
+    html.dyn .revele { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.3,1); }
+    html.dyn .revele.vu { opacity: 1; transform: none; }
+    html.dyn .item::before { transform: scaleY(0); transform-origin: top; transition: transform 1s ease .25s; }
+    html.dyn .item.vu::before { transform: scaleY(1); }
+  }
+
+  /* Tablette */
+  @media screen and (max-width: 1000px) {
+    html.dyn .page { zoom: 1; width: calc(100% - 32px); }
+  }
+  /* Téléphone : une seule colonne en affichage dynamique */
+  @media screen and (max-width: 760px) {
+    html.dyn .page { grid-template-columns: minmax(0, 1fr); width: 100%; margin: 0; border-radius: 0; box-shadow: none; zoom: 1; }
+    html.dyn .page > *, html.dyn main > *, html.dyn header > *, html.dyn .item > * { min-width: 0; }
+    html.dyn main, html.dyn aside { overflow-wrap: anywhere; }
+    html.dyn aside { padding: 30px 22px 26px; }
+    html.dyn aside section { max-width: 520px; margin-left: auto; margin-right: auto; }
+    html.dyn main { padding: 30px 20px 36px; }
+    html.dyn header { grid-template-columns: 1fr; gap: 14px; }
+    html.dyn .contacts { justify-self: start; padding-top: 10px; }
+    html.dyn h1 .prenom { font-size: 26pt; }
+    html.dyn h1 .nom { font-size: 40pt; }
+    html.dyn .titre, html.dyn .cible, html.dyn .fil .etapes { white-space: normal; }
+    html.dyn .item { grid-template-columns: 1fr; }
+    html.dyn .item > div:last-child, html.dyn .date { padding-left: 6mm; }
+    html.dyn .date { margin-bottom: 2px; }
+    html.dyn .date br { display: none; }
+    html.dyn .pied { margin: 18px 0 90px; }
+    .commandes { top: auto; bottom: 16px; right: 50%; transform: translateX(50%); }
+    .reglages { top: auto; bottom: 74px; right: 50%; transform: translateX(50%); width: min(320px, calc(100% - 24px)); }
+    html.pdf .page { margin: 14px auto 90px; }
+  }
+  /* Mouvement réduit demandé par le système : pas d'animation */
+  @media (prefers-reduced-motion: reduce) {
+    html.dyn .revele, html.dyn .item::before { opacity: 1 !important; transform: none !important; transition: none !important; }
+    html.dyn .photo, html.dyn h1 span, html.dyn .puce, html.dyn .carte, .telecharger, .reglages-bouton svg { transition: none !important; }
+  }
+  @media print {
+    .halo, .progression, .commandes, .reglages, .pied { display: none !important; }
+    .revele { opacity: 1 !important; transform: none !important; }
+    .page { zoom: 1 !important; }
+  }
 </style>
 </head>
 <body>
-<div class="barre-web"><a href="CV_Jean-Francois_TIXIER.pdf" download>Télécharger le CV (PDF)</a></div>
+<div class="halo" aria-hidden="true"></div>
+<div class="progression" aria-hidden="true"></div>
+<div class="commandes">
+  <a class="telecharger" href="CV_Jean-Francois_TIXIER.pdf" download="CV_Jean-Francois_TIXIER.pdf">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Télécharger le CV (PDF)
+  </a>
+  <button class="reglages-bouton" type="button" aria-expanded="false" aria-controls="reglages" title="Réglages d’affichage">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+    <span class="masque">Réglages</span>
+  </button>
+</div>
+<div class="reglages" id="reglages" role="dialog" aria-label="Réglages d’affichage" hidden>
+  <h2>Affichage</h2>
+  <label><input type="radio" name="affichage" value="dyn"><span><b>Dynamique</b><small>Responsive, effets au survol (par défaut)</small></span></label>
+  <label><input type="radio" name="affichage" value="pdf"><span><b>Identique au PDF</b><small>La page A4 exacte du CV</small></span></label>
+</div>
 <div class="page">
 
   <aside>
@@ -118,32 +294,35 @@
     <section>
       <h2>Profil</h2>
       <p class="accroche">
-        Élève ingénieur en <b>3<sup>e</sup> année à l’ECAM LaSalle</b>. Ce qui relie mes projets : comprendre
-        comment fonctionne un système, puis le <b>concevoir, le fabriquer, le programmer et le tester</b>.
-        <b>Vice-présidence du club Maker Aerospace</b> (projet drone), impression 3D, programmation : je cherche un stage de technicien
-        supérieur pour confronter cette démarche au <b>terrain industriel du spatial</b>.
+        Élève ingénieur en <b>3<sup>e</sup> année à l’ECAM LaSalle</b>, après deux ans de cycle préparatoire
+        intégré. Ce qui relie mes projets : comprendre un système, puis le <b>concevoir, le fabriquer, le
+        programmer et le tester</b>. Je cherche un stage de technicien supérieur au cœur de l’<b>industrie spatiale</b>.
       </p>
     </section>
 
     <section>
       <h2>Compétences</h2>
-      <div class="carte"><h3>Programmation</h3><p>Python · C++ · Java · MATLAB · SQL · PowerShell · HTML · Visual Studio, Android Studio, Eclipse</p></div>
+      <div class="carte vedette"><h3>Intelligence artificielle</h3><p><b>ChatGPT · Claude · Gemini · Codex</b></p></div>
+      <div class="carte"><h3>Programmation</h3><p>Python · C++ · Java · MATLAB · SQL · PowerShell · HTML · Linux · Visual Studio, Android Studio, Eclipse</p></div>
       <div class="carte"><h3>Conception &amp; mécanique</h3><p>SolidWorks · Creo · Fusion 360 · cinématique · RDM (cours)</p></div>
-      <div class="carte"><h3>Prototypage &amp; fabrication</h3><p>Impression 3D FDM · centre d’usinage (cours + TP) · métaux et alliages, forge, méthodes industrielles (cours)</p></div>
-      <div class="carte"><h3>Électronique &amp; systèmes</h3><p>Mesures R / U et contrôle qualité (stage) · électronique, mécatronique (cours)</p></div>
-      <div class="carte"><h3>Outils numériques</h3><p>OrcaSlicer, Bambu Studio · IA : ChatGPT, Claude, Gemini, Codex · Suite Office, Google Workspace, Notion, Gantt</p></div>
-      <div class="carte"><h3>Méthodes</h3><p>Travail en équipe · résolution de problèmes</p></div>
+      <div class="carte"><h3>Prototypage &amp; fabrication</h3><p>Impression 3D FDM · machines d’usinage (cours + TP) · métaux et alliages, forge, méthodes industrielles (cours)</p></div>
+      <div class="carte"><h3>Électronique &amp; systèmes</h3><p>Arduino · mesures sur wafers et diodes (stage) · électronique, électrotechnique, asservissement (cours)</p></div>
+      <div class="carte"><h3>Outils numériques</h3><p>OrcaSlicer, Bambu Studio, Cura · Office, Google Workspace, Notion, Gantt · PIX (331)</p></div>
+      <div class="carte"><h3>Savoir-être</h3><p>Rigueur · créativité · adaptabilité · polyvalence · esprit d’équipe</p></div>
     </section>
 
-    <section class="bloc-texte">
+    <section class="bloc-texte langues">
       <h2>Langues</h2>
       <div><h3>Français</h3><p>Langue maternelle</p></div>
-      <div><h3>Anglais</h3><p>B2 · Cambridge B2 First</p></div>
+      <div><h3>Anglais</h3><p>B2 · B2 First (166/230)</p></div>
+      <div><h3>Allemand</h3><p>Intermédiaire</p></div>
+      <div><h3>Latin, coréen</h3><p>Notions</p></div>
     </section>
 
     <section class="bloc-texte">
       <h2>Intérêts</h2>
-      <div><h3>Percussions</h3><p><b style="color:#fff;font-weight:600">14 ans, dont 11 au conservatoire</b> · timbales, xylophone, djembé, batterie</p></div>
+      <div><h3>Percussions</h3><p><b style="color:#fff;font-weight:600">14 ans, dont 11 au conservatoire</b> · groupe, orchestres · timbales, xylophone, djembé, batterie</p></div>
+      <div><h3>Mécanique automobile</h3><p>Fonctionnement des véhicules</p></div>
       <div><h3>Sports</h3><p><b style="color:#fff;font-weight:600">Tennis de table en club</b> · VTT, ski, escalade, randonnée, natation, musculation</p></div>
     </section>
   </aside>
@@ -155,8 +334,8 @@
       </div>
       <ul class="contacts">
         <li>Viroflay (78)</li>
-        <li>jf_tixier@orange.fr</li>
-        <li>Nationalité française · permis B</li>
+        <li><a href="mailto:jf_tixier@orange.fr">jf_tixier@orange.fr</a></li>
+        <li>20 ans · nationalité française · permis B</li>
       </ul>
     </header>
     <p class="titre">Élève ingénieur ECAM Arts &amp; Métiers</p>
@@ -173,10 +352,10 @@
       <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
         <p class="date">2026 – 2027</p>
         <div>
-          <h3>Club Maker Aerospace — ECAM LaSalle</h3>
-          <p class="fonction">Vice-président : prise de décision, assemblées générales · projet : drone à charge utile</p>
+          <h3>Club ECAM Makers Aerospace — Lyon</h3>
+          <p class="fonction">Vice-président (décisions, assemblées générales) · projet évolutif : drone / avion RC</p>
           <ul>
-            <li><b>Construire un drone</b> en équipe de 6, puis le <b>modifier pour l’emport de charges</b></li>
+            <li><b>Construire un drone / avion RC</b> en équipe de 6, puis le <b>modifier pour l’emport de charges</b></li>
             <li><b>Étudier le changement de direction</b> par orientation des hélices</li>
             <li>Moyens : <b>centre d’usinage, impression 3D, soudure de cartes électroniques</b></li>
           </ul>
@@ -188,7 +367,7 @@
           <h3>Projets personnels — Impression 3D</h3>
           <p class="fonction">Prototypage &amp; fabrication · Creality Ender-3 (FDM) · OrcaSlicer, Bambu Studio</p>
           <ul>
-            <li><b>Fabriquer</b> des pièces fonctionnelles : <b>train épicycloïdal, barillet de robot, boîtier de carte Arduino</b> ; maquettes (piano, avion), figurines</li>
+            <li><b>Fabriquer</b> systèmes mécaniques, boîtiers et supports : <b>train épicycloïdal, barillet de robot, boîtier de carte Arduino</b> ; maquettes (piano, avion), figurines</li>
             <li><b>Tester, corriger et améliorer</b> au fil des essais · CAO : <b>SolidWorks, Creo, Fusion&nbsp;360</b></li>
           </ul>
         </div>
@@ -196,11 +375,12 @@
       <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
         <p class="date">Depuis 2023</p>
         <div>
-          <h3>Programmation — robotique &amp; serveur</h3>
-          <p class="fonction">Python · C++ · Java · MATLAB · SQL · PowerShell · HTML</p>
+          <h3>Programmation — robotique, serveur, applications</h3>
+          <p class="fonction">Python · C++ · Java · MATLAB · SQL · PowerShell · HTML · Linux</p>
           <ul>
-            <li><b>Programmer un robot</b> pour la compétition <b>FIRST Tech Challenge</b> (adapté par l’ECAM)</li>
-            <li><b>Configurer un Raspberry Pi</b> pour héberger un serveur</li>
+            <li><b>FIRST Tech Challenge</b> (inter-écoles, ECAM) : <b>robot fabriqué de A à Z</b> en équipe, CAO, Java</li>
+            <li><b>Serveur Raspberry Pi</b> : OS, réseau, dépannage, optimisation, terminal Linux</li>
+            <li>Projets personnels : <b>jeux et applications</b></li>
           </ul>
         </div>
       </div>
@@ -220,22 +400,22 @@
         <div>
           <h3>ECAM LaSalle — campus de Lyon</h3>
           <p class="fonction">Diplôme d’ingénieur généraliste ECAM Arts &amp; Métiers — en cours · 3<sup>e</sup> année</p>
-          <p class="texte"><b>Enseignements pertinents :</b> mécanique du solide, résistance des matériaux, matériaux, fabrication et méthodes, organisation industrielle, CAO et conception, électronique, mécanique des fluides, algorithmique.</p>
+          <p class="texte"><b>Enseignements :</b> mécanique du solide, RDM, matériaux, fabrication et méthodes, organisation industrielle, CAO et conception, électronique, asservissement analogique, systèmes triphasés, mécanique des fluides, algorithmique Java.</p>
         </div>
       </div>
       <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
         <p class="date">2024 – 2026</p>
         <div>
           <h3>Cycle préparatoire intégré ECAM Arts &amp; Métiers</h3>
-          <p class="fonction">2 ans · Rueil-Malmaison · admission en cycle ingénieur sur contrôle continu</p>
-          <p class="texte">Mathématiques, physique, sciences de l’ingénieur (conception 3D, cinématique, matériaux, mécatronique), informatique.</p>
+          <p class="fonction">ECAM LaSalle Passy-Buzenval, Rueil-Malmaison · admission sur contrôle continu</p>
+          <p class="texte">Sciences de l’ingénieur (conception 3D, dessin technique, cinématique, capteurs, mécatronique), physique (électronique, électrotechnique), maths, informatique (algorithmique, bases de données).</p>
         </div>
       </div>
       <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
         <p class="date">2024</p>
         <div>
           <h3>Baccalauréat général</h3>
-          <p class="fonction">Mention assez bien · spécialités mathématiques et physique-chimie</p>
+          <p class="fonction">Mention assez bien (13,72) · spécialités mathématiques et physique-chimie</p>
           <p class="texte">Lycée Notre-Dame du Grandchamp, Versailles</p>
         </div>
       </div>
@@ -244,36 +424,139 @@
     <section>
       <h2>Expériences professionnelles</h2>
       <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
-        <p class="date">Été 2025</p>
+        <p class="date">Mai – juin<br>2025</p>
         <div>
           <h3>Exens Solutions — Les Ulis</h3>
-          <p class="fonction">Stage opérateur · composants hyperfréquences pour le spatial et la défense</p>
+          <p class="fonction">Stage opérateur d’un mois en salle blanche · hyperfréquences, spatial et défense</p>
           <ul>
-            <li>Travail en <b>salle blanche</b> avec 4 collègues et un chef d’équipe : manipulation de <b>diodes</b></li>
-            <li><b>Mesures de résistance et de tension</b> pour le <b>contrôle qualité</b> des composants</li>
+            <li>Mesures sur <b>wafers</b> et tests de <b>diodes</b> : étanchéité, tension, courant, résistance</li>
+            <li><b>Contrôle qualité</b> au sein d’une équipe de 4 opérateurs et d’un chef d’équipe</li>
           </ul>
         </div>
       </div>
       <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
-        <p class="date">2020</p>
+        <p class="date">Mai 2020</p>
         <div>
-          <h3>Cobham — Villebon-sur-Yvette</h3>
-          <p class="fonction">Stage d’observation de 3<sup>e</sup> · découverte d’une entreprise du secteur aéronautique</p>
+          <h3>Cobham Microwave (auj. Exens Solutions) — Villebon</h3>
+          <p class="fonction">Stage d’observation de 3<sup>e</sup> (1 semaine) : salle blanche, stock, conception 3D, R&amp;D, RH</p>
         </div>
       </div>
     </section>
   </main>
+  <a class="qr" href="https://jean-francois-tixier.github.io" title="CV en ligne"><svg viewBox="0 0 33 33" aria-hidden="true"><rect width="33" height="33" fill="#fff"/><path fill="#1f2a3d" d="M1.98 1.98h7.04v1.04h-7.04zM9.98 1.98h2.04v1.04h-2.04zM12.98 1.98h1.04v1.04h-1.04zM15.98 1.98h1.04v1.04h-1.04zM18.98 1.98h1.04v1.04h-1.04zM23.98 1.98h7.04v1.04h-7.04zM1.98 2.98h1.04v1.04h-1.04zM7.98 2.98h1.04v1.04h-1.04zM9.98 2.98h7.04v1.04h-7.04zM20.98 2.98h1.04v1.04h-1.04zM23.98 2.98h1.04v1.04h-1.04zM29.98 2.98h1.04v1.04h-1.04zM1.98 3.98h1.04v1.04h-1.04zM3.98 3.98h3.04v1.04h-3.04zM7.98 3.98h1.04v1.04h-1.04zM9.98 3.98h2.04v1.04h-2.04zM12.98 3.98h1.04v1.04h-1.04zM14.98 3.98h2.04v1.04h-2.04zM19.98 3.98h3.04v1.04h-3.04zM23.98 3.98h1.04v1.04h-1.04zM25.98 3.98h3.04v1.04h-3.04zM29.98 3.98h1.04v1.04h-1.04zM1.98 4.98h1.04v1.04h-1.04zM3.98 4.98h3.04v1.04h-3.04zM7.98 4.98h1.04v1.04h-1.04zM10.98 4.98h2.04v1.04h-2.04zM14.98 4.98h1.04v1.04h-1.04zM16.98 4.98h3.04v1.04h-3.04zM20.98 4.98h2.04v1.04h-2.04zM23.98 4.98h1.04v1.04h-1.04zM25.98 4.98h3.04v1.04h-3.04zM29.98 4.98h1.04v1.04h-1.04zM1.98 5.98h1.04v1.04h-1.04zM3.98 5.98h3.04v1.04h-3.04zM7.98 5.98h1.04v1.04h-1.04zM9.98 5.98h1.04v1.04h-1.04zM11.98 5.98h1.04v1.04h-1.04zM14.98 5.98h2.04v1.04h-2.04zM19.98 5.98h3.04v1.04h-3.04zM23.98 5.98h1.04v1.04h-1.04zM25.98 5.98h3.04v1.04h-3.04zM29.98 5.98h1.04v1.04h-1.04zM1.98 6.98h1.04v1.04h-1.04zM7.98 6.98h1.04v1.04h-1.04zM10.98 6.98h1.04v1.04h-1.04zM13.98 6.98h3.04v1.04h-3.04zM17.98 6.98h3.04v1.04h-3.04zM21.98 6.98h1.04v1.04h-1.04zM23.98 6.98h1.04v1.04h-1.04zM29.98 6.98h1.04v1.04h-1.04zM1.98 7.98h7.04v1.04h-7.04zM9.98 7.98h1.04v1.04h-1.04zM11.98 7.98h1.04v1.04h-1.04zM13.98 7.98h1.04v1.04h-1.04zM15.98 7.98h1.04v1.04h-1.04zM17.98 7.98h1.04v1.04h-1.04zM19.98 7.98h1.04v1.04h-1.04zM21.98 7.98h1.04v1.04h-1.04zM23.98 7.98h7.04v1.04h-7.04zM11.98 8.98h1.04v1.04h-1.04zM13.98 8.98h2.04v1.04h-2.04zM16.98 8.98h1.04v1.04h-1.04zM21.98 8.98h1.04v1.04h-1.04zM1.98 9.98h1.04v1.04h-1.04zM4.98 9.98h6.04v1.04h-6.04zM11.98 9.98h1.04v1.04h-1.04zM13.98 9.98h2.04v1.04h-2.04zM16.98 9.98h3.04v1.04h-3.04zM20.98 9.98h3.04v1.04h-3.04zM25.98 9.98h1.04v1.04h-1.04zM27.98 9.98h3.04v1.04h-3.04zM1.98 10.98h1.04v1.04h-1.04zM3.98 10.98h3.04v1.04h-3.04zM8.98 10.98h3.04v1.04h-3.04zM12.98 10.98h5.04v1.04h-5.04zM18.98 10.98h1.04v1.04h-1.04zM20.98 10.98h1.04v1.04h-1.04zM25.98 10.98h1.04v1.04h-1.04zM27.98 10.98h2.04v1.04h-2.04zM1.98 11.98h3.04v1.04h-3.04zM5.98 11.98h4.04v1.04h-4.04zM11.98 11.98h1.04v1.04h-1.04zM13.98 11.98h2.04v1.04h-2.04zM16.98 11.98h4.04v1.04h-4.04zM23.98 11.98h2.04v1.04h-2.04zM27.98 11.98h1.04v1.04h-1.04zM1.98 12.98h1.04v1.04h-1.04zM3.98 12.98h4.04v1.04h-4.04zM8.98 12.98h3.04v1.04h-3.04zM12.98 12.98h3.04v1.04h-3.04zM18.98 12.98h2.04v1.04h-2.04zM22.98 12.98h2.04v1.04h-2.04zM26.98 12.98h1.04v1.04h-1.04zM29.98 12.98h1.04v1.04h-1.04zM1.98 13.98h2.04v1.04h-2.04zM4.98 13.98h2.04v1.04h-2.04zM7.98 13.98h1.04v1.04h-1.04zM9.98 13.98h1.04v1.04h-1.04zM11.98 13.98h2.04v1.04h-2.04zM14.98 13.98h1.04v1.04h-1.04zM16.98 13.98h1.04v1.04h-1.04zM21.98 13.98h1.04v1.04h-1.04zM23.98 13.98h2.04v1.04h-2.04zM29.98 13.98h1.04v1.04h-1.04zM5.98 14.98h1.04v1.04h-1.04zM12.98 14.98h8.04v1.04h-8.04zM23.98 14.98h7.04v1.04h-7.04zM2.98 15.98h1.04v1.04h-1.04zM5.98 15.98h3.04v1.04h-3.04zM12.98 15.98h3.04v1.04h-3.04zM16.98 15.98h2.04v1.04h-2.04zM19.98 15.98h3.04v1.04h-3.04zM23.98 15.98h3.04v1.04h-3.04zM27.98 15.98h1.04v1.04h-1.04zM29.98 15.98h1.04v1.04h-1.04zM1.98 16.98h1.04v1.04h-1.04zM3.98 16.98h1.04v1.04h-1.04zM5.98 16.98h2.04v1.04h-2.04zM8.98 16.98h3.04v1.04h-3.04zM17.98 16.98h1.04v1.04h-1.04zM20.98 16.98h1.04v1.04h-1.04zM25.98 16.98h1.04v1.04h-1.04zM27.98 16.98h1.04v1.04h-1.04zM29.98 16.98h1.04v1.04h-1.04zM1.98 17.98h3.04v1.04h-3.04zM6.98 17.98h4.04v1.04h-4.04zM11.98 17.98h1.04v1.04h-1.04zM15.98 17.98h1.04v1.04h-1.04zM20.98 17.98h2.04v1.04h-2.04zM24.98 17.98h1.04v1.04h-1.04zM26.98 17.98h1.04v1.04h-1.04zM1.98 18.98h1.04v1.04h-1.04zM3.98 18.98h1.04v1.04h-1.04zM6.98 18.98h1.04v1.04h-1.04zM9.98 18.98h2.04v1.04h-2.04zM12.98 18.98h1.04v1.04h-1.04zM14.98 18.98h3.04v1.04h-3.04zM18.98 18.98h5.04v1.04h-5.04zM25.98 18.98h1.04v1.04h-1.04zM27.98 18.98h2.04v1.04h-2.04zM1.98 19.98h3.04v1.04h-3.04zM5.98 19.98h1.04v1.04h-1.04zM7.98 19.98h1.04v1.04h-1.04zM9.98 19.98h1.04v1.04h-1.04zM12.98 19.98h2.04v1.04h-2.04zM16.98 19.98h3.04v1.04h-3.04zM20.98 19.98h1.04v1.04h-1.04zM22.98 19.98h2.04v1.04h-2.04zM25.98 19.98h2.04v1.04h-2.04zM29.98 19.98h1.04v1.04h-1.04zM1.98 20.98h2.04v1.04h-2.04zM6.98 20.98h1.04v1.04h-1.04zM8.98 20.98h2.04v1.04h-2.04zM13.98 20.98h1.04v1.04h-1.04zM15.98 20.98h1.04v1.04h-1.04zM17.98 20.98h1.04v1.04h-1.04zM21.98 20.98h1.04v1.04h-1.04zM23.98 20.98h5.04v1.04h-5.04zM1.98 21.98h4.04v1.04h-4.04zM6.98 21.98h2.04v1.04h-2.04zM9.98 21.98h4.04v1.04h-4.04zM14.98 21.98h3.04v1.04h-3.04zM18.98 21.98h1.04v1.04h-1.04zM20.98 21.98h9.04v1.04h-9.04zM9.98 22.98h1.04v1.04h-1.04zM15.98 22.98h2.04v1.04h-2.04zM21.98 22.98h1.04v1.04h-1.04zM25.98 22.98h2.04v1.04h-2.04zM1.98 23.98h7.04v1.04h-7.04zM9.98 23.98h1.04v1.04h-1.04zM12.98 23.98h2.04v1.04h-2.04zM15.98 23.98h3.04v1.04h-3.04zM19.98 23.98h3.04v1.04h-3.04zM23.98 23.98h1.04v1.04h-1.04zM25.98 23.98h2.04v1.04h-2.04zM1.98 24.98h1.04v1.04h-1.04zM7.98 24.98h1.04v1.04h-1.04zM9.98 24.98h1.04v1.04h-1.04zM11.98 24.98h1.04v1.04h-1.04zM15.98 24.98h1.04v1.04h-1.04zM17.98 24.98h5.04v1.04h-5.04zM25.98 24.98h1.04v1.04h-1.04zM1.98 25.98h1.04v1.04h-1.04zM3.98 25.98h3.04v1.04h-3.04zM7.98 25.98h1.04v1.04h-1.04zM9.98 25.98h2.04v1.04h-2.04zM12.98 25.98h4.04v1.04h-4.04zM17.98 25.98h1.04v1.04h-1.04zM19.98 25.98h8.04v1.04h-8.04zM29.98 25.98h1.04v1.04h-1.04zM1.98 26.98h1.04v1.04h-1.04zM3.98 26.98h3.04v1.04h-3.04zM7.98 26.98h1.04v1.04h-1.04zM9.98 26.98h1.04v1.04h-1.04zM13.98 26.98h2.04v1.04h-2.04zM16.98 26.98h5.04v1.04h-5.04zM22.98 26.98h1.04v1.04h-1.04zM29.98 26.98h1.04v1.04h-1.04zM1.98 27.98h1.04v1.04h-1.04zM3.98 27.98h3.04v1.04h-3.04zM7.98 27.98h1.04v1.04h-1.04zM11.98 27.98h1.04v1.04h-1.04zM13.98 27.98h1.04v1.04h-1.04zM15.98 27.98h2.04v1.04h-2.04zM18.98 27.98h1.04v1.04h-1.04zM21.98 27.98h2.04v1.04h-2.04zM24.98 27.98h2.04v1.04h-2.04zM27.98 27.98h3.04v1.04h-3.04zM1.98 28.98h1.04v1.04h-1.04zM7.98 28.98h1.04v1.04h-1.04zM10.98 28.98h3.04v1.04h-3.04zM15.98 28.98h2.04v1.04h-2.04zM19.98 28.98h1.04v1.04h-1.04zM23.98 28.98h1.04v1.04h-1.04zM26.98 28.98h2.04v1.04h-2.04zM29.98 28.98h1.04v1.04h-1.04zM1.98 29.98h7.04v1.04h-7.04zM9.98 29.98h1.04v1.04h-1.04zM13.98 29.98h1.04v1.04h-1.04zM16.98 29.98h1.04v1.04h-1.04zM20.98 29.98h2.04v1.04h-2.04zM24.98 29.98h1.04v1.04h-1.04z"/></svg><span>CV en ligne</span></a>
 </div>
+<p class="pied">CV mis à jour en octobre 2026</p>
 <script>
-  // Sur un écran plus étroit qu'une page A4, réduit la page entière au lieu de la couper.
-  (function () {
-    var page = document.querySelector('.page');
-    function ajuster() {
-      var largeur = page.offsetWidth, dispo = document.documentElement.clientWidth - 16;
-      page.style.zoom = largeur > dispo ? (dispo / largeur).toFixed(3) : '';
-    }
-    window.addEventListener('resize', ajuster); ajuster();
-  })();
+(function () {
+  var racine = document.documentElement, page = document.querySelector('.page');
+  var calme = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var souris = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  function dyn() { return racine.classList.contains('dyn'); }
+
+  // ---------- Apparition au défilement (affichage dynamique) ----------
+  var cibles = document.querySelectorAll('aside section, .carte, main header, .titre, .cible, .motscles, .fil, main h2, .item');
+  cibles.forEach(function (el) { el.classList.add('revele'); });
+  function reveler() {
+    var n = 0, limite = innerHeight * 0.94;
+    cibles.forEach(function (el) {
+      if (el.classList.contains('vu') || el.getBoundingClientRect().top > limite) return;
+      el.style.transitionDelay = calme ? '0ms' : (Math.min(n++, 8) * 70) + 'ms';
+      el.classList.add('vu');
+    });
+  }
+  addEventListener('scroll', reveler, { passive: true });
+  addEventListener('resize', reveler);
+  addEventListener('load', reveler);
+  document.addEventListener('visibilitychange', reveler);
+
+  // ---------- Réglages : bascule entre les deux affichages ----------
+  var bouton = document.querySelector('.reglages-bouton'), panneau = document.getElementById('reglages');
+  var choix = panneau.querySelectorAll('input[name="affichage"]');
+  function ouvrir(oui) { panneau.hidden = !oui; bouton.setAttribute('aria-expanded', oui ? 'true' : 'false'); }
+  bouton.addEventListener('click', function (ev) { ev.stopPropagation(); ouvrir(panneau.hidden); });
+  document.addEventListener('click', function (ev) { if (!panneau.hidden && !panneau.contains(ev.target)) ouvrir(false); });
+  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') ouvrir(false); });
+
+  function ajusterPdf() {
+    // Affichage PDF : la page A4 est réduite pour tenir dans les écrans étroits, jamais agrandie
+    page.style.zoom = '';
+    if (dyn()) return;
+    var dispo = document.documentElement.clientWidth - 24, largeur = page.offsetWidth;
+    if (largeur > dispo) page.style.zoom = (dispo / largeur).toFixed(3);
+  }
+  function appliquer(mode) {
+    racine.classList.toggle('dyn', mode === 'dyn');
+    racine.classList.toggle('pdf', mode !== 'dyn');
+    try { localStorage.setItem('cv-affichage', mode); } catch (e) {}
+    choix.forEach(function (c) { c.checked = c.value === mode; });
+    // remise à zéro des effets posés en ligne par l'affichage dynamique
+    document.querySelectorAll('.photo, h1 span').forEach(function (el) { el.style.transform = ''; el.style.boxShadow = ''; });
+    ajusterPdf();
+    reveler();
+  }
+  choix.forEach(function (c) { c.addEventListener('change', function () { appliquer(c.value); }); });
+  addEventListener('resize', ajusterPdf);
+
+  // ---------- Barre de progression de lecture ----------
+  var barre = document.querySelector('.progression');
+  function progression() {
+    var max = racine.scrollHeight - innerHeight;
+    barre.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 1) + ')';
+  }
+  addEventListener('scroll', progression, { passive: true });
+
+  // ---------- Fil conducteur : chaque étape s'illumine tour à tour ----------
+  var fil = document.querySelector('.fil .etapes');
+  if (fil) {
+    fil.innerHTML = fil.innerHTML.replace(/(Concevoir|Fabriquer|Programmer|Tester)/g, '<span class="etape">$1</span>');
+    var etapes = fil.querySelectorAll('.etape'), i = 0;
+    if (!calme) setInterval(function () {
+      etapes.forEach(function (e, k) { e.classList.toggle('active', k === i); });
+      i = (i + 1) % etapes.length;
+    }, 1400);
+  }
+
+  appliquer(racine.classList.contains('pdf') ? 'pdf' : 'dyn');
+  progression();
+
+  if (!souris || calme) return;
+
+  // ---------- Effets au survol (affichage dynamique uniquement) ----------
+  var halo = document.querySelector('.halo');
+  addEventListener('pointermove', function (ev) {
+    if (!dyn()) return;
+    halo.style.setProperty('--hx', ev.clientX + 'px');
+    halo.style.setProperty('--hy', ev.clientY + 'px');
+  }, { passive: true });
+
+  document.querySelectorAll('.carte, .item').forEach(function (el) {
+    el.addEventListener('pointermove', function (ev) {
+      if (!dyn()) return;
+      var r = el.getBoundingClientRect(), z = parseFloat(getComputedStyle(page).zoom) || 1;
+      el.style.setProperty('--mx', (ev.clientX - r.left) / z + 'px');
+      el.style.setProperty('--my', (ev.clientY - r.top) / z + 'px');
+    });
+    el.addEventListener('pointerleave', function () { el.style.setProperty('--mx', '-999px'); el.style.setProperty('--my', '-999px'); });
+  });
+
+  var photo = document.querySelector('.photo'), aside = document.querySelector('aside');
+  aside.addEventListener('pointermove', function (ev) {
+    if (!dyn()) return;
+    var r = photo.getBoundingClientRect();
+    var dx = (ev.clientX - (r.left + r.width / 2)) / innerWidth, dy = (ev.clientY - (r.top + r.height / 2)) / innerHeight;
+    photo.style.transform = 'perspective(500px) rotateY(' + (dx * 28) + 'deg) rotateX(' + (-dy * 28) + 'deg) scale(1.03)';
+    photo.style.boxShadow = (-dx * 30) + 'px ' + (-dy * 30 + 10) + 'px 30px rgba(0,0,0,.35), 0 0 0 1mm rgba(209,176,107,.35)';
+  });
+  aside.addEventListener('pointerleave', function () { photo.style.transform = ''; photo.style.boxShadow = ''; });
+
+  var prenom = document.querySelector('h1 .prenom'), nom = document.querySelector('h1 .nom');
+  addEventListener('pointermove', function (ev) {
+    if (!dyn()) return;
+    var dx = ev.clientX / innerWidth - .5, dy = ev.clientY / innerHeight - .5;
+    prenom.style.transform = 'translate(' + (dx * 8) + 'px,' + (dy * 4) + 'px)';
+    nom.style.transform = 'translate(' + (dx * 16) + 'px,' + (dy * 8) + 'px)';
+  }, { passive: true });
+})();
 </script>
 </body>
 </html>
