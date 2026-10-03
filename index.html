@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jean-François Tixier – CV</title>
+<meta name="description" content="CV de Jean-François Tixier, élève ingénieur ECAM Arts &amp; Métiers, en recherche de stage d’application Bac+3.">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Version 2 « codes 2026 » : micro-sidebar (~25 %), typographie expressive,
+     compétences en mots-clés (aucune jauge), pictogrammes absents, une seule couleur d'accent.
+     Balisage sémantique (h1/h2/h3/ul) et texte réel pour la lecture ATS. */
+  :root {
+    --nuit: #1d2a40;
+    --nuit-2: #243350;
+    --encre: #1f2a3d;
+    --or: #b08d43;
+    --or-clair: #d1b06b;
+    --gris: #5d6573;
+    --gris-2: #8a919c;
+    --filet: #cfd4dc;
+    --fond-clair: #f5f3ee;
+    --carte: rgba(255,255,255,.07);
+    --side-texte: #e3e7ee;
+    --side-doux: #a3adbf;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #e6e8ec; }
+  body { font-family: "Source Sans 3", "Segoe UI", Arial, sans-serif; color: var(--encre); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  sup { font-size: .62em; line-height: 0; vertical-align: .55em; text-transform: none; }
+  .page { width: 210mm; height: 297mm; margin: 0 auto; background: #fff; display: grid; grid-template-columns: 52mm 1fr; overflow: hidden; }
+  @media screen { .page { margin: 10mm auto; box-shadow: 0 4px 24px rgba(0,0,0,.15); } }
+  @media print { html, body { background: #fff; } .page { margin: 0; box-shadow: none; } }
+
+  /* ---------- Micro-sidebar ---------- */
+  aside {
+    background: linear-gradient(180deg, var(--nuit-2) 0%, var(--nuit) 55%);
+    color: var(--side-texte); padding: 8.5mm 5.5mm 6mm 6mm;
+  }
+  .photo { display: block; width: 31mm; height: 31mm; margin: 0 auto 5mm; border-radius: 50%; box-shadow: 0 0 0 1mm rgba(209,176,107,.22); }
+  aside h2 {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 12.5pt; letter-spacing: 1.1px;
+    text-transform: uppercase; color: var(--or-clair); display: flex; align-items: center; gap: 2.5mm; margin-bottom: 2.3mm;
+  }
+  aside h2::after { content: ""; flex: 1; height: 0.6pt; background: rgba(209,176,107,.55); }
+  aside section + section { margin-top: 3.8mm; }
+  .accroche { font-size: 8.2pt; line-height: 1.42; color: var(--side-texte); font-weight: 300; }
+  .accroche b { font-weight: 600; color: #fff; }
+  .carte { background: var(--carte); border: 0.5pt solid rgba(255,255,255,.08); border-radius: 1.5mm; padding: 1.3mm 2.2mm 1.5mm; margin-bottom: 1.3mm; }
+  .carte:last-child { margin-bottom: 0; }
+  .carte h3 { font-size: 8.2pt; font-weight: 600; color: #fff; line-height: 1.2; }
+  .carte p { font-size: 7.2pt; color: var(--side-doux); line-height: 1.3; margin-top: .2mm; }
+  .bloc-texte div { margin-bottom: 1.8mm; line-height: 1.25; }
+  .bloc-texte div:last-child { margin-bottom: 0; }
+  .bloc-texte h3 { font-size: 8.2pt; font-weight: 600; color: #fff; }
+  .bloc-texte p { font-size: 7.3pt; color: var(--side-doux); margin-top: .2mm; }
+
+  /* ---------- Contenu ---------- */
+  main { padding: 8.5mm 10mm 6mm 9mm; }
+  header { display: grid; grid-template-columns: 1fr 52mm; gap: 4mm; }
+  h1 { font-family: "Barlow Condensed", sans-serif; color: var(--encre); line-height: .9; letter-spacing: .5px; }
+  h1 .prenom { display: block; font-weight: 300; font-size: 31pt; }
+  h1 .nom { display: block; font-weight: 700; font-size: 50pt; }
+  .titre { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 14pt; letter-spacing: .8px; text-transform: uppercase; color: var(--or); margin-top: 2mm; white-space: nowrap; }
+  .cible { font-family: "Barlow Condensed", sans-serif; font-weight: 400; font-size: 11.6pt; letter-spacing: .7px; text-transform: uppercase; color: var(--encre); margin-top: .5mm; white-space: nowrap; }
+  .motscles { font-family: "Barlow Condensed", sans-serif; font-weight: 500; font-size: 9.6pt; letter-spacing: 1.6px; text-transform: uppercase; color: var(--gris-2); margin-top: .8mm; }
+  .contacts { list-style: none; font-size: 8.2pt; color: var(--gris); line-height: 1.75; padding-top: 3mm; position: relative; justify-self: end; }
+  .contacts::before { content: ""; position: absolute; top: 0; left: 0; width: 7mm; height: 0.8pt; background: var(--or); }
+
+  /* Fil conducteur : la démarche qui relie tous les projets */
+  .fil { margin-top: 4mm; background: var(--fond-clair); border-radius: 1.5mm; padding: 2mm 3.5mm; display: flex; align-items: baseline; gap: 3.5mm; flex-wrap: wrap; }
+  .fil .etapes { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 11.5pt; letter-spacing: 1.2px; text-transform: uppercase; color: var(--encre); white-space: nowrap; }
+  .fil .etapes span { color: var(--or); padding: 0 1mm; }
+  .fil p { font-size: 8.3pt; color: var(--gris); }
+
+  main h2 {
+    font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 15pt; letter-spacing: .6px; text-transform: uppercase;
+    color: var(--encre); display: flex; align-items: center; gap: 4mm; margin: 4mm 0 2.2mm;
+  }
+  main h2::after { content: ""; flex: 1; height: 0.7pt; background: var(--filet); }
+
+  .item { display: grid; grid-template-columns: 24mm 1fr; position: relative; padding-bottom: 2.3mm; }
+  .item:last-child { padding-bottom: 0; }
+  .item { --axe: 4px; }
+  .item::before { content: ""; position: absolute; left: var(--axe); top: 2mm; bottom: -2mm; width: 1px; background: var(--or); opacity: .75; }
+  .item:last-child::before { display: none; }
+  .puce { position: absolute; left: calc(var(--axe) - 4px); top: calc(2.05mm - 4.5px); width: 9px; height: 9px; fill: var(--or); overflow: visible; }
+  .date { padding-left: 5mm; font-size: 8.2pt; color: var(--gris); padding-top: .2mm; }
+  .item h3 { font-family: "Barlow Condensed", sans-serif; font-weight: 600; font-size: 12pt; letter-spacing: .3px; text-transform: uppercase; color: var(--encre); line-height: 1.1; }
+  .fonction { font-size: 8.9pt; color: var(--or); margin-top: .3mm; }
+  .item ul { list-style: none; margin-top: .7mm; }
+  .item li { position: relative; padding-left: 3.2mm; font-size: 8.4pt; line-height: 1.34; color: var(--gris); margin-bottom: .35mm; }
+  .item li::before { content: ""; position: absolute; left: .3mm; top: 1.8mm; width: 1mm; height: 1mm; border-radius: 50%; background: var(--gris-2); }
+  .item p.texte { font-size: 8.4pt; line-height: 1.34; color: var(--gris); margin-top: .6mm; }
+  .item b { color: var(--encre); font-weight: 600; }
+
+  /* Informations manquantes, à remplacer avant envoi */
+  .todo { color: #946a10; background: #fbf1d6; border: 0.6pt dashed #c9a24a; border-radius: 1mm; padding: 0 .9mm; font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; font-family: "Source Sans 3", sans-serif; }
+  h3 .todo { font-size: 8.4pt; }
+  aside .todo { color: #f0d48f; background: rgba(209,176,107,.12); border-color: rgba(209,176,107,.7); }
+  .barre-web { max-width: 210mm; margin: 6mm auto 0; display: flex; justify-content: flex-end; }
+  .barre-web a { font-family: "Source Sans 3", sans-serif; font-size: 10pt; font-weight: 600; color: #fff; background: var(--nuit); padding: 2.2mm 4.5mm; border-radius: 1.5mm; text-decoration: none; }
+  .barre-web a:hover { background: var(--or); }
+  @media print { .barre-web { display: none; } .page { zoom: 1 !important; } }
+</style>
+</head>
+<body>
+<div class="barre-web"><a href="CV_Jean-Francois_TIXIER.pdf" download>Télécharger le CV (PDF)</a></div>
+<div class="page">
+
+  <aside>
+    <img class="photo" src="assets/photo_JF_ronde.png" alt="Photo de Jean-François Tixier">
+
+    <section>
+      <h2>Profil</h2>
+      <p class="accroche">
+        Élève ingénieur en <b>3<sup>e</sup> année à l’ECAM LaSalle</b>. Ce qui relie mes projets : comprendre
+        comment fonctionne un système, puis le <b>concevoir, le fabriquer, le programmer et le tester</b>.
+        <b>Vice-présidence du club Maker Aerospace</b> (projet drone), impression 3D, programmation : je cherche un stage de technicien
+        supérieur pour confronter cette démarche au <b>terrain industriel du spatial</b>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Compétences</h2>
+      <div class="carte"><h3>Programmation</h3><p>Python · C++ · Java · MATLAB · SQL · PowerShell · HTML · Visual Studio, Android Studio, Eclipse</p></div>
+      <div class="carte"><h3>Conception &amp; mécanique</h3><p>SolidWorks · Creo · Fusion 360 · cinématique · RDM (cours)</p></div>
+      <div class="carte"><h3>Prototypage &amp; fabrication</h3><p>Impression 3D FDM · centre d’usinage (cours + TP) · métaux et alliages, forge, méthodes industrielles (cours)</p></div>
+      <div class="carte"><h3>Électronique &amp; systèmes</h3><p>Mesures R / U et contrôle qualité (stage) · électronique, mécatronique (cours)</p></div>
+      <div class="carte"><h3>Outils numériques</h3><p>OrcaSlicer, Bambu Studio · IA : ChatGPT, Claude, Gemini, Codex · Suite Office, Google Workspace, Notion, Gantt</p></div>
+      <div class="carte"><h3>Méthodes</h3><p>Travail en équipe · résolution de problèmes</p></div>
+    </section>
+
+    <section class="bloc-texte">
+      <h2>Langues</h2>
+      <div><h3>Français</h3><p>Langue maternelle</p></div>
+      <div><h3>Anglais</h3><p>B2 · Cambridge B2 First</p></div>
+    </section>
+
+    <section class="bloc-texte">
+      <h2>Intérêts</h2>
+      <div><h3>Percussions</h3><p><b style="color:#fff;font-weight:600">14 ans, dont 11 au conservatoire</b> · timbales, xylophone, djembé, batterie</p></div>
+      <div><h3>Sports</h3><p><b style="color:#fff;font-weight:600">Tennis de table en club</b> · VTT, ski, escalade, randonnée, natation, musculation</p></div>
+    </section>
+  </aside>
+
+  <main>
+    <header>
+      <div>
+        <h1><span class="prenom">JEAN-FRANÇOIS</span><span class="nom">TIXIER</span></h1>
+      </div>
+      <ul class="contacts">
+        <li>Viroflay (78)</li>
+        <li>jf_tixier@orange.fr</li>
+        <li>Nationalité française · permis B</li>
+      </ul>
+    </header>
+    <p class="titre">Élève ingénieur ECAM Arts &amp; Métiers</p>
+    <p class="cible">Stage d’application Bac+3 · Thales Alenia Space Cannes</p>
+    <p class="motscles">Conception · Prototypage · Programmation · Spatial</p>
+
+    <div class="fil">
+      <p class="etapes">Concevoir<span>→</span>Fabriquer<span>→</span>Programmer<span>→</span>Tester</p>
+      <p>Stage technicien supérieur · <b style="color:var(--encre);font-weight:600">13 semaines, du 31 mai au 27 août 2027</b></p>
+    </div>
+
+    <section>
+      <h2>Projets &amp; expériences techniques</h2>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">2026 – 2027</p>
+        <div>
+          <h3>Club Maker Aerospace — ECAM LaSalle</h3>
+          <p class="fonction">Vice-président : prise de décision, assemblées générales · projet : drone à charge utile</p>
+          <ul>
+            <li><b>Construire un drone</b> en équipe de 6, puis le <b>modifier pour l’emport de charges</b></li>
+            <li><b>Étudier le changement de direction</b> par orientation des hélices</li>
+            <li>Moyens : <b>centre d’usinage, impression 3D, soudure de cartes électroniques</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">Depuis 2023</p>
+        <div>
+          <h3>Projets personnels — Impression 3D</h3>
+          <p class="fonction">Prototypage &amp; fabrication · Creality Ender-3 (FDM) · OrcaSlicer, Bambu Studio</p>
+          <ul>
+            <li><b>Fabriquer</b> des pièces fonctionnelles : <b>train épicycloïdal, barillet de robot, boîtier de carte Arduino</b> ; maquettes (piano, avion), figurines</li>
+            <li><b>Tester, corriger et améliorer</b> au fil des essais · CAO : <b>SolidWorks, Creo, Fusion&nbsp;360</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">Depuis 2023</p>
+        <div>
+          <h3>Programmation — robotique &amp; serveur</h3>
+          <p class="fonction">Python · C++ · Java · MATLAB · SQL · PowerShell · HTML</p>
+          <ul>
+            <li><b>Programmer un robot</b> pour la compétition <b>FIRST Tech Challenge</b> (adapté par l’ECAM)</li>
+            <li><b>Configurer un Raspberry Pi</b> pour héberger un serveur</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">Depuis 2021</p>
+        <div>
+          <h3>Réalisation audiovisuelle</h3>
+          <p class="fonction">Storyboard &amp; prise de vue, en binôme avec un monteur · parodies de films d’espionnage</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Formation</h2>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">2026 – 2027</p>
+        <div>
+          <h3>ECAM LaSalle — campus de Lyon</h3>
+          <p class="fonction">Diplôme d’ingénieur généraliste ECAM Arts &amp; Métiers — en cours · 3<sup>e</sup> année</p>
+          <p class="texte"><b>Enseignements pertinents :</b> mécanique du solide, résistance des matériaux, matériaux, fabrication et méthodes, organisation industrielle, CAO et conception, électronique, mécanique des fluides, algorithmique.</p>
+        </div>
+      </div>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">2024 – 2026</p>
+        <div>
+          <h3>Cycle préparatoire intégré ECAM Arts &amp; Métiers</h3>
+          <p class="fonction">2 ans · Rueil-Malmaison · admission en cycle ingénieur sur contrôle continu</p>
+          <p class="texte">Mathématiques, physique, sciences de l’ingénieur (conception 3D, cinématique, matériaux, mécatronique), informatique.</p>
+        </div>
+      </div>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">2024</p>
+        <div>
+          <h3>Baccalauréat général</h3>
+          <p class="fonction">Mention assez bien · spécialités mathématiques et physique-chimie</p>
+          <p class="texte">Lycée Notre-Dame du Grandchamp, Versailles</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Expériences professionnelles</h2>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">Été 2025</p>
+        <div>
+          <h3>Exens Solutions — Les Ulis</h3>
+          <p class="fonction">Stage opérateur · composants hyperfréquences pour le spatial et la défense</p>
+          <ul>
+            <li>Travail en <b>salle blanche</b> avec 4 collègues et un chef d’équipe : manipulation de <b>diodes</b></li>
+            <li><b>Mesures de résistance et de tension</b> pour le <b>contrôle qualité</b> des composants</li>
+          </ul>
+        </div>
+      </div>
+      <div class="item"><svg class="puce" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10"/></svg>
+        <p class="date">2020</p>
+        <div>
+          <h3>Cobham — Villebon-sur-Yvette</h3>
+          <p class="fonction">Stage d’observation de 3<sup>e</sup> · découverte d’une entreprise du secteur aéronautique</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+  // Sur un écran plus étroit qu'une page A4, réduit la page entière au lieu de la couper.
+  (function () {
+    var page = document.querySelector('.page');
+    function ajuster() {
+      var largeur = page.offsetWidth, dispo = document.documentElement.clientWidth - 16;
+      page.style.zoom = largeur > dispo ? (dispo / largeur).toFixed(3) : '';
+    }
+    window.addEventListener('resize', ajuster); ajuster();
+  })();
+</script>
+</body>
+</html>
